@@ -157,7 +157,7 @@ void setup_windows(AppState *s) {
                                       0, bar_w, BAR_HEIGHT, 0, 0, 0x000000);
   s->panel_win = XCreateSimpleWindow(s->disp, RootWindow(s->disp, s->scr),
                                      s->screen_w - PANEL_WIDTH, 0, PANEL_WIDTH,
-                                     s->screen_h, 0, 0, 0x1e3a8a);
+                                     s->screen_h * 0.96, 0, 0, 0x1e3a8a);
 
   Atom wtype = XInternAtom(s->disp, "_NET_WM_WINDOW_TYPE", False);
   Atom dock = XInternAtom(s->disp, "_NET_WM_WINDOW_TYPE_DOCK", False);
@@ -277,7 +277,7 @@ int main(void) {
       py += 20;
       draw_pango(s.panel_cr, lay_item, "› Deploy: compile & run 🚀", 0,
                  MARGIN + 6, py, 0.88, 0.92, 1.0, 0);
-      py = s.screen_h - 144;
+      py = s.screen_h - 200;
       float cpu = get_cpu_usage(), ram = get_ram_usage();
       char mb[64];
       snprintf(mb, sizeof(mb), "CPU  %.1f%%", cpu * 100);
@@ -292,7 +292,7 @@ int main(void) {
       draw_bar(s.panel_cr, MARGIN, py, PANEL_WIDTH - MARGIN * 2, 10, ram, 0.05,
                0.12, 0.35, 0.30, 0.80, 0.30);
       draw_sep(s.panel_cr, py + 24);
-      double yb = s.screen_h - 50.0;
+      double yb = s.screen_h - 100.0;
       draw_pango(s.panel_cr, lay_link, "github.com/xeland314", 0, MARGIN, yb,
                  0.7, 0.8, 1.0, 1);
       yb += 20;
